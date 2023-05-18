@@ -1,2 +1,48 @@
 name : Dev -- sync Notebooks on the Databricks
 
+on :
+  push :
+    branches : [main]
+    paths :
+      - *.*
+    workflow_dispatch:
+    
+  env :
+    DEV_DATABRICKS_HOST : "https://------.gcp.databricks.com/"
+    DEV_DATABRICKS_TOKEN : ${{ secrets.DEV_DATABRICKS_TOKEN}}
+    
+  jobs:
+    dev-databricks-sync-notebooks:
+      runs-on:[self-hosted,Linux]
+      strategy:
+        matrix:
+          name:
+            - formula1de
+          steps:
+            - name: ${{matrix.env}} - ${{matrix.name}} - Checkout
+              uses:
+              with:
+                fetch-depth:0
+                
+            - name: set up Python
+              uses:
+              with: 
+                python-version : '3.8.10'
+              
+            - name: install-databricks-cli
+              uses:
+             
+            - name: ${{matrix.env}} - ${{matrix.name}} - Checkout
+              run: |
+              
+             - name: ${{matrix.env}} - ${{matrix.name}} - Checkout
+              run: |
+              
+              - name: ${{matrix.name}} - Sync notebooks to Databricks workspace
+              run: |-
+                  databricks workspace import_dir --overwrite src/${{matrix.name}}/python_notebooks/ /projects/src/${{matrix.name}}
+              
+              
+              
+              
+              
