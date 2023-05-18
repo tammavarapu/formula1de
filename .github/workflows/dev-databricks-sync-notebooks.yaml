@@ -40,7 +40,7 @@ on :
               
               - name: ${{matrix.name}} - Sync notebooks to Databricks workspace
               run: |-
-                  databricks workspace import_dir --overwrite src/${{matrix.name}}/python_notebooks/ /projects/src/${{matrix.name}}
+                  databricks workspace import_dir --overwrite src/${{matrix.name}}/python_notebooks/ /projects/src/${{matrix.name}}/
               
               
               
